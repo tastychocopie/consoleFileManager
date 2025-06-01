@@ -265,3 +265,37 @@ def changeWorkingDirectory():
 
         except Exception as e:
             print(f"Произошла ошибка: {str(e)}")
+
+
+def saveDirectoryContents():
+    """
+    Сохраняет содержимое рабочей директории в файл listdir.txt
+    Формат:
+    [Файлы]
+    file1.txt
+    file2.jpg
+    ...
+    [Папки]
+    folder1
+    folder2
+    ...
+    """
+    try:
+        # Получаем текущую директорию и её содержимое
+        current_dir = os.getcwd()
+        contents = os.listdir(current_dir)
+
+        # Разделяем файлы и папки
+        files = [item for item in contents if os.path.isfile(os.path.join(current_dir, item))]
+        folders = [item for item in contents if os.path.isdir(os.path.join(current_dir, item))]
+
+        # Записываем в файл
+        with open('listdir.txt', 'w', encoding='utf-8') as f:
+            f.write("[Файлы]\n")
+            f.write("\n".join(files) + "\n\n")
+            f.write("[Папки]\n")
+            f.write("\n".join(folders) + "\n")
+
+        print("Содержимое директории сохранено в файл listdir.txt")
+    except Exception as e:
+        print(f"Ошибка при сохранении: {e}")

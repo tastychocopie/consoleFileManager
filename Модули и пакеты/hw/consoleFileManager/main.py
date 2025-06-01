@@ -15,7 +15,8 @@ while True:
     print('9. Играть в викторину')
     print('10. Мой банковский счет')
     print('11. Смена рабочей директории')
-    print('12. Выход')
+    print('12. Сохранить содержимое рабочей директории в файл')
+    print('13. Выход')
     choice = input('Выберите пункт меню: ')
     if choice == '1':
         module.createFolder()
@@ -40,6 +41,8 @@ while True:
     elif choice == '11':
         module.changeWorkingDirectory()
     elif choice == '12':
+        module.saveDirectoryContents()
+    elif choice == '13':
         break #exit
     else:
         print('Неверный пункт меню')
