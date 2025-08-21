@@ -3,6 +3,16 @@ import os
 import shutil
 import platform
 
+
+# Декоратор для красивого и автоматизированного вывода в консоль
+def add_ui(message):
+    def decorate(func):
+        def wrapper():
+            print(message)
+            func()
+        return wrapper
+    return decorate
+
 """
 Функция создания папки
 """
@@ -93,6 +103,7 @@ def getFileInfo():
     for folder in folders:
         print(folder)
 
+@add_ui('Идёт загрузка об устройстве...')
 def getOsInfo():
     #Выводит информацию об операционной системе.
     print("Информация об операционной системе:")
@@ -109,6 +120,7 @@ def getOsInfo():
     elif platform.system() == "Darwin":
         print(f"macOS версия: {platform.mac_ver()[0]}")
 
+@add_ui("Загрузка данных...")
 def showCreator():
     # Вывод информации студента
     developer_info = {
